@@ -47,7 +47,7 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+            <button type="submit" class="btn btn-primary btn-block">Simpan</button>
           </div>
           <!-- /.col -->
         </div>

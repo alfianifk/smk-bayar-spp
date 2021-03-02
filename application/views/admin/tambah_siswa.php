@@ -14,13 +14,15 @@
                         <div class="col-6">
                             <div class="form-group">
                               <label for="nisn">NISN</label>
-                              <input type="number" name="nisn" class="form-control" id="nisn" placeholder="NISN">
+                              <input type="number" required name="nisn" class="form-control" id="nisn" placeholder="NISN">
+                              <?= form_error('nisn', '<p class="pl-2 text-danger">', '</p>'); ?>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                               <label for="nis">Nomor Induk Siswa</label>
-                              <input type="number" name="nis" class="form-control" id="nis" placeholder="NIS">
+                              <input type="number" required name="nis" class="form-control" id="nis" placeholder="NIS">
+                              <?= form_error('nis', '<p class="pl-2 text-danger">', '</p>'); ?>
                             </div>
                         </div>
                     </div>
@@ -28,13 +30,15 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="nama">Nama Lengkap</label>
-                                <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama Lengkap">
+                                <input type="text" required name="nama" class="form-control" id="nama" placeholder="Nama Lengkap">
+                                <?= form_error('nama', '<p class="pl-2 text-danger">', '</p>'); ?>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="nama">Nomor Telepon</label>
-                                <input type="number" name="nama" class="form-control" id="nama" placeholder="Nomor Telepon">
+                                <label for="telp">Nomor Telepon</label>
+                                <input type="number" required name="telp" class="form-control" id="telp" placeholder="Nomor Telepon">
+                                <?= form_error('telp', '<p class="pl-2 text-danger">', '</p>'); ?>
                             </div>
                         </div>
                     </div>
@@ -42,7 +46,7 @@
                         <div class="col-6">
                         <div class="form-group">
                             <label>Kelas dan Bidang Keahlian</label>
-                                <select name="id_kelas" class="form-control">
+                                <select required name="id_kelas" class="form-control">
                                     <option value="2" >10 Rekayasa Perangkat Lunak</option>
                                     <option value="9" >10 Multimedia</option>
                                     <option value="6" >10 Otomatisasi Tata Kelola Perkantoran</option>
@@ -58,7 +62,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Alamat</label>
-                                <textarea name="alamat" class="form-control"></textarea>
+                                <textarea required name="alamat" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>

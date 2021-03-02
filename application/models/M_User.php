@@ -95,10 +95,12 @@ class M_User extends CI_Model {
            'nama' => $post['nama'],
            'id_kelas' => $post['id_kelas'],
            'alamat' => $post['alamat'],
-           'no_telp' => $post['no_telp'],
+           'no_telp' => $post['telp'],
            'id_spp' => 1,
            'role' => 0           
        ];
+
+       return $this->db->insert($this->_tableSiswa, $data);
    }
 
    public function dataPetugas()
