@@ -35,4 +35,22 @@ class Administrator extends CI_Controller {
 		$this->load->view('admin/siswa', $data);
 		$this->load->view('layout/footer');
 	}
+
+	public function tambahSiswa()
+	{
+		$data['siswa'] = $this->M_User->dataSiswa();
+		$this->load->view('layout/navbar');
+		$this->load->view('layout/sidebar');
+		$this->load->view('admin/tambah_siswa', $data);
+		$this->load->view('layout/footer');
+	}
+
+	public function petugas()
+	{
+		$data['petugas'] = $this->M_User->dataPetugas();
+		$this->load->view('layout/navbar');
+		$this->load->view('layout/sidebar');
+		$this->load->view('admin/petugas', $data);
+		$this->load->view('layout/footer');
+	}
 }

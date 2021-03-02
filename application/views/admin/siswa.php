@@ -1,6 +1,6 @@
 <section class="content">
     <div class="container-fluid">
-        <a href="#" class="btn btn-sm btn-primary">Tambah Data</a>
+        <a href="<?= base_url('administrator/tambahSiswa'); ?>" class="btn btn-sm btn-primary">Tambah Data</a>
         <div class="mt-3">
             <div class="">
             <div class="card">
@@ -14,32 +14,34 @@
                   <tr>
                     <th>Nomor</th>
                     <th>NIS</th>
-                    <th>Nama Lengkap</th>
                     <th>NISN</th>
+                    <th>Nama Lengkap</th>
+                    <th>Kelas</th>
+                    <th>Kompetensi Keahlian</th>
                     <th>Alamat</th>
                     <th>No. Telp</th>
+                    <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
+                    <?php $no = 1;?>
+                    <?php foreach($siswa as $s) : ?>
                   <tr>
-                    <td>Misc</td>
-                    <td>PSP browser</td>
-                    <td>PSP</td>
-                    <td>-</td>
-                    <td>C</td>
-                    <td>h</td>
+                    <td><?= $no++; ?></td>
+                    <td><?= $s['nis']; ?></td>
+                    <td><?= $s['nisn']; ?></td>
+                    <td><?= $s['nama']; ?></td>
+                    <td><?= $s['kelas']; ?></td>
+                    <td><?= $s['kompetensi_keahlian']; ?></td>
+                    <td><?= $s['alamat']; ?></td>
+                    <td><?= $s['no_telp']; ?></td>
+                    <td>
+                      <a href="<?= base_url('administrator/editSiswa/'); ?><?= $s['nisn']; ?>" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></a>
+                      <a onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');" href="<?= base_url('administrator/deleteSiswa/'); ?><?= $s['nisn']; ?>" class="btn btn-xs btn-danger" role="button" title="Hapus Data"><i class="fa fa-trash"></i></a>
+                    </td>
                   </tr>
+                  <?php endforeach; ?>
                   </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                    <th>ts</th>
-                  </tr>
-                  </tfoot>
                 </table>
               </div>
             </div>

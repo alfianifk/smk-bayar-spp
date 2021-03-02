@@ -80,7 +80,15 @@ class M_User extends CI_Model {
 
    public function dataSiswa()
    {
-       return $this->db->get($this->_tableSiswa)->result_array();
+       $this->db->select('*');
+       $this->db->from($this->_tableSiswa);
+       $this->db->join('kelas','kelas.id_kelas = siswa.id_kelas');      
+       return $this->db->get()->result_array();
+   }
+
+   public function dataPetugas()
+   {  
+       return $this->db->get($this->_tablePetugas)->result_array();
    }
 
 }
