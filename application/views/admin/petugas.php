@@ -1,6 +1,7 @@
 <section class="content">
     <div class="container-fluid">
-        <a href="#" class="btn btn-sm btn-primary">Tambah Data</a>
+      <a href="<?= base_url('administrator/tambahPetugas'); ?>" class="mb-3 btn btn-sm btn-primary">Tambah Data</a>
+      <?= $this->session->flashdata('message'); ?>
         <div class="mt-3">
             <div class="">
             <div class="card">

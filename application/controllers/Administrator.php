@@ -62,6 +62,17 @@ class Administrator extends CI_Controller {
 		}
 	}
 
+	public function deleteSiswa($id)
+	{
+		$this->db->where('nisn', $id);
+		$this->db->delete('siswa');
+
+		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data yang anda pilih telah dihapus!</div>');
+		redirect('administrator/siswa');
+
+		return;
+	}
+
 	public function petugas()
 	{
 		$data['petugas'] = $this->M_User->dataPetugas();
@@ -69,5 +80,41 @@ class Administrator extends CI_Controller {
 		$this->load->view('layout/sidebar');
 		$this->load->view('admin/petugas', $data);
 		$this->load->view('layout/footer');
+	}
+
+	public function tambahPetugas()
+	{
+		$validation = $this->form_validation;
+		$validation->set_rules('username', 'Username', 'required');
+		$validation->set_rules('password', 'Password', 'required');
+		$validation->set_rules('nama', 'Nama', 'required');
+		$validation->set_rules('level', 'Level', 'required');
+		$validation->set_rules('role', 'Role', 'required');
+
+		$validation->set_message('required', '<div class="small text-danger"><i class="fa fa-exclamation-circle"></i> {field} tidak boleh kosong!</div>');
+
+		if($validation->run() == TRUE)
+		{
+			$this->M_User->tambahPetugas();
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Terima kasih! Data sudah tersimpan</div>');
+			redirect('administrator/petugas');
+		} else {
+		$data['petugas'] = $this->M_User->dataPetugas();
+		$this->load->view('layout/navbar');
+		$this->load->view('layout/sidebar');
+		$this->load->view('admin/tambah_petugas', $data);
+		$this->load->view('layout/footer');
+		}
+	}
+
+	public function deletePetugas($id)
+	{
+		$this->db->where('id_petugas', $id);
+		$this->db->delete('petugas');
+
+		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data yang anda pilih telah dihapus!</div>');
+		redirect('administrator/petugas');
+
+		return;
 	}
 }

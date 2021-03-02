@@ -2,6 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
+            <a href="<?= base_url('administrator/siswa'); ?>" class="mb-3 btn btn-sm btn-primary">Kembali</a>
             <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Tambah Data Siswa</h3>

@@ -108,4 +108,18 @@ class M_User extends CI_Model {
        return $this->db->get($this->_tablePetugas)->result_array();
    }
 
+   public function tambahPetugas()
+   {
+       $post = $this->input->post();
+       $data = [
+           'username' => $post['username'],
+           'password' => password_hash($post['password'], PASSWORD_DEFAULT),
+           'nama' => $post['nama'],
+           'level' => $post['level'],
+           'role' => $post['role']   
+       ];
+
+       return $this->db->insert($this->_tablePetugas, $data);
+   }
+
 }
