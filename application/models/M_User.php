@@ -86,6 +86,21 @@ class M_User extends CI_Model {
        return $this->db->get()->result_array();
    }
 
+   public function tambahSiswa()
+   {
+       $post = $this->input->post();
+       $data = [
+           'nisn' => $post['nisn'],
+           'nis' => $post['nis'],
+           'nama' => $post['nama'],
+           'id_kelas' => $post['id_kelas'],
+           'alamat' => $post['alamat'],
+           'no_telp' => $post['no_telp'],
+           'id_spp' => 1,
+           'role' => 0           
+       ];
+   }
+
    public function dataPetugas()
    {  
        return $this->db->get($this->_tablePetugas)->result_array();
