@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Mar 2021 pada 10.48
+-- Waktu pembuatan: 03 Mar 2021 pada 14.58
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.6
 
@@ -33,6 +33,21 @@ CREATE TABLE `kelas` (
   `kompetensi_keahlian` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `kelas`
+--
+
+INSERT INTO `kelas` (`id_kelas`, `kelas`, `kompetensi_keahlian`) VALUES
+(1, '12', 'Rekayasa Perangkat Lunak'),
+(2, '10', 'Rekayasa Perangkat Lunak'),
+(3, '11', 'Rekayasa Perangkat Lunak'),
+(4, '12', 'OTKP'),
+(5, '11', 'OTKP'),
+(6, '10', 'OTKP'),
+(7, '12', 'Multimedia'),
+(8, '11', 'Multimedia'),
+(9, '10', 'Multimedia');
+
 -- --------------------------------------------------------
 
 --
@@ -47,7 +62,8 @@ CREATE TABLE `pembayaran` (
   `bulan_dibayar` varchar(50) NOT NULL,
   `tahun_dibayar` varchar(5) NOT NULL,
   `id_spp` int(11) NOT NULL,
-  `jumlah_bayar` int(11) NOT NULL
+  `jumlah_bayar` int(11) NOT NULL,
+  `bukti_pembayaran` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -95,7 +111,7 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`nisn`, `nis`, `nama`, `id_kelas`, `alamat`, `no_telp`, `id_spp`, `role`) VALUES
-('0015995390', '171810023', 'Alfiani Fitria Kusnadi', 12, 'Cikalong', '082321543292', 1, 0);
+('0015995390', '171810023', 'Alfiani Fitria Kusnadi', 2, 'Kp. Desakolot Ds. Singkir Kec. Cikalong', '082321543292', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -185,7 +201,7 @@ ALTER TABLE `tagihan`
 -- AUTO_INCREMENT untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembayaran`
@@ -197,7 +213,7 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT untuk tabel `petugas`
 --
 ALTER TABLE `petugas`
-  MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `spp`
