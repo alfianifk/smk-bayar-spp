@@ -54,7 +54,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?= base_url('administrator/spp'); ?>" class="nav-link">
                 <i class="fas fa-dollar-sign nav-icon"></i>
                 <p>Data SPP</p>
             </a>

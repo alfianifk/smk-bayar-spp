@@ -173,11 +173,21 @@ class Administrator extends CI_Controller {
 		return;
 	}
 
-	public function dataSpp()
+	public function spp()
 	{
 		$this->load->view('layout/navbar');
 		$this->load->view('layout/sidebar');
 		$this->load->view('admin/spp');
+		$this->load->view('layout/footer');
+	}
+
+	public function tambahSpp()
+	{
+		$validation = $this->form_validation();
+		
+		$this->load->view('layout/navbar');
+		$this->load->view('layout/sidebar');
+		$this->load->view('admin/tambah_spp');
 		$this->load->view('layout/footer');
 	}
 }
