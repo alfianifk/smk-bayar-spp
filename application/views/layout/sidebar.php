@@ -17,7 +17,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
+          <li class="menu-open nav-item ">
           <?php if($this->session->userdata("role") == 2) :   ?>
             <a href="<?= base_url('administrator') ?>" class="nav-link">
             <?php elseif($this->session->userdata("role") == 1) : ?>

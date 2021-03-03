@@ -174,4 +174,35 @@ class M_User extends CI_Model {
 
    }
 
+   public function getSppById($id)
+   {
+        $this->db->where('id_spp', $id);
+        return $this->db->get($this->_tableSpp)->row_array();
+   }
+
+   public function tambahSpp()
+   {
+       $post = $this->input->post();
+       $data = [
+            'tahun' => $post['tahun'],
+            'bulan' => $post['bulan'],
+            'nominal' => $post['nominal']
+       ];
+
+       return $this->db->insert($this->_tableSpp, $data);
+   }
+
+   public function editSpp($id)
+   {
+       $post = $this->input->post();
+       $data = [
+            'tahun' => $post['tahun'],
+            'bulan' => $post['bulan'],
+            'nominal' => $post['nominal']
+       ];
+       
+       $this->db->where('id_spp', $id);
+       return $this->db->update($this->_tableSpp, $data);
+   }
+
 }

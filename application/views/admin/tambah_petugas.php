@@ -69,6 +69,13 @@
             </div>
             <!-- /.card -->
             </div>
+
+            <!-- TES COLUM -->
+            <!-- <div class="col-md-4">
+                <div class="card">
+                    <h1>TES</h1>
+                </div>
+            </div> -->
         </div>
     </div>
 </section>

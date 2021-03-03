@@ -19,6 +19,7 @@ class Petugas extends CI_Controller {
     }
 
 
+	//VIEW PETUGAS
 	public function index()
 	{
 		$this->load->view('layout/navbar');

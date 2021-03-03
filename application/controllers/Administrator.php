@@ -175,19 +175,65 @@ class Administrator extends CI_Controller {
 
 	public function spp()
 	{
+		$data['spp'] = $this->M_User->dataSpp();
 		$this->load->view('layout/navbar');
 		$this->load->view('layout/sidebar');
-		$this->load->view('admin/spp');
+		$this->load->view('admin/spp', $data);
 		$this->load->view('layout/footer');
 	}
 
 	public function tambahSpp()
 	{
-		$validation = $this->form_validation();
-		
+
+		$validation = $this->form_validation;
+
+		$validation->set_rules('nominal', 'Nominal', 'required');
+
+		$validation->set_message('required', '<div class="small text-danger"><i class="fa fa-exclamation-circle"></i> {field} tidak boleh kosong!</div>');
+
+		if($validation->run() == TRUE)
+		{
+			$this->M_User->tambahSpp();
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Terima kasih! Data sudah berhasil diubah</div>');
+			redirect('administrator/spp');
+		} else {
 		$this->load->view('layout/navbar');
 		$this->load->view('layout/sidebar');
 		$this->load->view('admin/tambah_spp');
 		$this->load->view('layout/footer');
+		}
+	}
+
+	public function deleteSpp($id)
+	{
+		$this->db->where('id_spp', $id);
+		$this->db->delete('spp');
+
+		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data yang anda pilih telah dihapus!</div>');
+		redirect('administrator/spp');
+
+		return;
+	}
+
+	public function editSpp($id)
+	{
+		$validation = $this->form_validation;
+
+		$validation->set_rules('nominal', 'Nominal', 'required');
+
+		$validation->set_message('required', '<div class="small text-danger"><i class="fa fa-exclamation-circle"></i> {field} tidak boleh kosong!</div>');
+
+		if($validation->run() == TRUE)
+		{
+			$this->M_User->editSpp($id);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Terima kasih! Data sudah berhasil diubah</div>');
+			redirect('administrator/spp');
+		} else {
+		$data['spp'] = $this->M_User->getSppById($id);
+		$this->load->view('layout/navbar');
+		$this->load->view('layout/sidebar');
+		$this->load->view('admin/edit_spp', $data);
+		$this->load->view('layout/footer');
+		}
 	}
 }

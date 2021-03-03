@@ -14,15 +14,24 @@
                             <th>Nominal</th>
                             <th>Bulan</th>
                             <th>Tahun</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $no = 1;
+                        foreach($spp as $s) :
+                        ?>
                         <tr>
-                            <td>1</td>
-                            <td>Rp. 50.000,-</td>
-                            <td>Januari</td>
-                            <td>2021</td>
+                            <td><?= $no++; ?></td>
+                            <td>Rp. <?= $s['nominal'] ?>,-</td>
+                            <td><?= $s['bulan']; ?></td>
+                            <td><?= $s['tahun']; ?></td>
+                            <td>
+                            <a href="<?= base_url('administrator/editSpp/'); ?><?= $s['id_spp']; ?>" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></a>
+                            <a onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');" href="<?= base_url('administrator/deleteSpp/'); ?><?= $s['id_spp']; ?>" class="btn btn-xs btn-danger" role="button" title="Hapus Data"><i class="fa fa-trash"></i></a>
+                            </td>
                         </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
