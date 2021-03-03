@@ -86,6 +86,12 @@ class M_User extends CI_Model {
        return $this->db->get()->result_array();
    }
 
+   public function getSiswaByNisn($id)
+   {
+       $this->db->where('nisn', $id);
+       return $this->db->get($this->_tableSiswa)->row_array();
+   }
+
    public function tambahSiswa()
    {
        $post = $this->input->post();
@@ -103,9 +109,33 @@ class M_User extends CI_Model {
        return $this->db->insert($this->_tableSiswa, $data);
    }
 
+   public function editSiswa($id)
+   {
+       $post = $this->input->post();
+       $data = [
+           'nisn' => $post['nisn'],
+           'nis' => $post['nis'],
+           'nama' => $post['nama'],
+           'id_kelas' => $post['id_kelas'],
+           'alamat' => $post['alamat'],
+           'no_telp' => $post['telp'],
+           'id_spp' => 1,
+           'role' => 0           
+       ];
+
+        $this->db->where('nisn', $id);
+       return $this->db->update($this->_tableSiswa, $data);
+   }
+
    public function dataPetugas()
    {  
        return $this->db->get($this->_tablePetugas)->result_array();
+   }
+
+   public function getPetugasById($id)
+   {
+       $this->db->where('id_petugas', $id);
+       return $this->db->get($this->_tablePetugas)->row_array();
    }
 
    public function tambahPetugas()
@@ -120,6 +150,20 @@ class M_User extends CI_Model {
        ];
 
        return $this->db->insert($this->_tablePetugas, $data);
+   }
+
+   public function editPetugas($id)
+   {
+       $post = $this->input->post();
+       $data = [
+           'username' => $post['username'],
+           'nama' => $post['nama'],
+           'level' => $post['level'],
+           'role' => $post['role']   
+       ];
+
+       $this->db->where('id_petugas', $id);
+       return $this->db->update($this->_tablePetugas, $data);
    }
 
 }

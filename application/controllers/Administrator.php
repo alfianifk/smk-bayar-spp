@@ -62,6 +62,33 @@ class Administrator extends CI_Controller {
 		}
 	}
 
+	public function editSiswa($id)
+	{
+
+		$validation = $this->form_validation;
+		$validation->set_rules('nisn', 'Nisn', 'required');
+		$validation->set_rules('nis', 'Nis', 'required');
+		$validation->set_rules('nama', 'Nama', 'required');
+		$validation->set_rules('telp', 'Telp', 'required');
+		$validation->set_rules('id_kelas', 'Id_kelas', 'required');
+		$validation->set_rules('alamat', 'Alamat', 'required');
+
+		$validation->set_message('required', '<div class="small text-danger"><i class="fa fa-exclamation-circle"></i> {field} tidak boleh kosong!</div>');
+
+		if($validation->run() == TRUE)
+		{
+			$this->M_User->editSiswa($id);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Terima kasih! Data sudah berhasil diubah</div>');
+			redirect('administrator/siswa');
+		} else {
+		$data['siswa'] = $this->M_User->getSiswaByNisn($id);
+		$this->load->view('layout/navbar');
+		$this->load->view('layout/sidebar');
+		$this->load->view('admin/edit_siswa', $data);
+		$this->load->view('layout/footer');
+		}
+	}
+
 	public function deleteSiswa($id)
 	{
 		$this->db->where('nisn', $id);
@@ -103,6 +130,31 @@ class Administrator extends CI_Controller {
 		$this->load->view('layout/navbar');
 		$this->load->view('layout/sidebar');
 		$this->load->view('admin/tambah_petugas', $data);
+		$this->load->view('layout/footer');
+		}
+	}
+
+	public function editPetugas($id)
+	{
+		$validation = $this->form_validation;
+		$validation->set_rules('username', 'Username', 'required');
+		$validation->set_rules('password', 'Password', 'trim');
+		$validation->set_rules('nama', 'Nama', 'required');
+		$validation->set_rules('level', 'Level', 'required');
+		$validation->set_rules('role', 'Role', 'required');
+
+		$validation->set_message('required', '<div class="small text-danger"><i class="fa fa-exclamation-circle"></i> {field} tidak boleh kosong!</div>');
+
+		if($validation->run() == TRUE)
+		{
+			$this->M_User->editPetugas($id);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Terima kasih! Data sudah berhasil diubah</div>');
+			redirect('administrator/petugas');
+		} else {
+		$data['petugas'] = $this->M_User->getPetugasById($id);
+		$this->load->view('layout/navbar');
+		$this->load->view('layout/sidebar');
+		$this->load->view('admin/edit_petugas', $data);
 		$this->load->view('layout/footer');
 		}
 	}

@@ -8,7 +8,7 @@
             </div>
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Tambah Data Petugas</h3>
+                <h3 class="card-title">Edit Data Petugas</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -18,15 +18,14 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" required name="username" class="form-control" id="username" placeholder="Username">
+                                <input type="text" required name="username" class="form-control" id="username" placeholder="Username" value="<?= $petugas['username']; ?>">
                                 <?= form_error('username', '<p class="pl-2 text-danger">', '</p>'); ?>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" required name="password" class="form-control" id="password" placeholder="Password">
-                                <?= form_error('password', '<p class="pl-2 text-danger">', '</p>'); ?>
+                                <input type="password" readonly name="password" class="form-control" id="password" placeholder="Password" value="<?= $petugas['password'] ?>">
                             </div>
                         </div>
                     </div>
@@ -34,7 +33,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="nama">Nama</label>
-                                <input type="text" class="form-control" placeholder="Nama" name="nama" id="nama">
+                                <input type="text" class="form-control" placeholder="Nama" name="nama" id="nama" value="<?= $petugas['nama']; ?>">
                                 <?= form_error('nama', '<p class="pl-2 text-danger">', '</p>') ?>
                             </div>
                         </div>
@@ -42,8 +41,8 @@
                             <div class="form-group">
                                 <label>Level</label>
                                     <select required name="level" class="form-control">
-                                        <option value="admin" >Admin</option>
-                                        <option value="petugas" >Petugas</option>
+                                        <option <?= ($petugas['level'] == 'admin') ? print 'selected' : print ' '; ?> value="admin" >Admin</option>
+                                        <option <?= ($petugas['level'] == 'petugas') ? print 'selected' : print ' '; ?> value="petugas" >Petugas</option>
                                     </select>
                                     <?= form_error('level', '<p class="pl-2 text-danger">', '</p>') ?>
                             </div>
@@ -52,8 +51,8 @@
                             <div class="form-group">
                                 <label>Akses</label>
                                     <select required name="role" class="form-control">
-                                        <option value="2" >Full</option>
-                                        <option value="1" >Terbatas</option>
+                                        <option <?= ($petugas['role'] == 2) ? print 'selected' : print ' '; ?> value="2" >Full</option>
+                                        <option <?= ($petugas['role'] == 1) ? print 'selected' : print ' '; ?> value="1" >Terbatas</option>
                                     </select>
                                     <?= form_error('role', '<p class="pl-2 text-danger">', '</p>') ?>
                             </div>
