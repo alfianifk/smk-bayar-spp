@@ -183,26 +183,27 @@ class M_User extends CI_Model {
    public function tambahSpp()
    {
        $post = $this->input->post();
-       $data = [
+       $spp = [
             'tahun' => $post['tahun'],
             'bulan' => $post['bulan'],
             'nominal' => $post['nominal']
        ];
 
-       return $this->db->insert($this->_tableSpp, $data);
+       return $this->db->insert($this->_tableSpp, $spp);
    }
 
    public function editSpp($id)
    {
        $post = $this->input->post();
-       $data = [
+       $spp = [
             'tahun' => $post['tahun'],
             'bulan' => $post['bulan'],
             'nominal' => $post['nominal']
        ];
        
        $this->db->where('id_spp', $id);
-       return $this->db->update($this->_tableSpp, $data);
+       return $this->db->update($this->_tableSpp, $spp);
+
    }
 
 }
