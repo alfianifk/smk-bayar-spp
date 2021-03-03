@@ -55,6 +55,7 @@ class M_User extends CI_Model {
 
                     if ($user['level'] == "admin")
                     {
+                        //MASUK Ke dashboard masing masing ROLE
                         redirect('administrator');
                     } else {
                         redirect('petugas');
