@@ -3,43 +3,43 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3><?= count($siswa); ?></h3>
 
-                <p>Bounce Rate</p>
+                <p>Data Siswa</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="ion ion-person"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3><?= count($petugas); ?></h3>
 
-                <p>User Registrations</p>
+                <p>Data Petugas</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="ion ion-person"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3><?= count($spp); ?></h3>
 
-                <p>Unique Visitors</p>
+                <p>Konfirmasi Pembayaran</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
@@ -54,11 +54,41 @@
 
       <div class="container-fluid">
         <div class="row">
-            <section class="col-lg-7 connectedSortable">
+            <section class="col-lg-12 connectedSortable">
                 <div class="card">
                     <div class="card-header">
-                        tes
+                      Konfirmasi Pembayaran
                     </div>
+                    <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Nomor</th>
+                    <td>NISN</td>
+                    <td>Nama</td>
+                    <td>Bulan</td>
+                    <td>Dibayar</td>
+                    <td>Status</td>
+                    <th>Aksi</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <?php $no = 1;?>
+                  <tr>
+                    <td><?= $no++; ?></td>
+                    <td>634727468273</td>
+                    <td>AlfianiFk</td>
+                    <td>Januari 2021</td>
+                    <td>5 Januari 2021</td>
+                    <td>Belum Dikonfirmasi</td>
+                    <td>
+                      <a onclick="return confirm('Apakah anda yakin ingin mengkonfirmasi pembayaran ini?');" href="#" class="btn btn-xs btn-success" role="button" title="Hapus Data">Konfirmasi</a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
                 </div>
             </section>
         </div>

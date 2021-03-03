@@ -6,7 +6,8 @@ class M_User extends CI_Model {
 
    //Membuat var global untuk tabel 
    private $_tableSiswa = 'siswa';
-   private $_tablePetugas = 'petugas'; 
+   private $_tablePetugas = 'petugas';
+   private $_tableSpp = 'spp'; 
 
    public function login()
    {
@@ -164,6 +165,12 @@ class M_User extends CI_Model {
 
        $this->db->where('id_petugas', $id);
        return $this->db->update($this->_tablePetugas, $data);
+   }
+
+   public function dataSpp()
+   {
+       return $this->db->get($this->_tableSpp)->result_array();
+
    }
 
 }

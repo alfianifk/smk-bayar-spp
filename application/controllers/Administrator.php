@@ -21,9 +21,12 @@ class Administrator extends CI_Controller {
 
 	public function index()
 	{
+		$data['siswa'] = $this->M_User->dataSiswa();
+		$data['petugas'] = $this->M_User->dataPetugas();
+		$data['spp'] = $this->M_User->dataSpp();
 		$this->load->view('layout/navbar');
 		$this->load->view('layout/sidebar');
-		$this->load->view('admin/dashboard');
+		$this->load->view('admin/dashboard', $data);
 		$this->load->view('layout/footer');
 	}
 
