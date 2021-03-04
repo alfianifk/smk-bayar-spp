@@ -30,6 +30,7 @@
             </a>
           </li>
           <?php if($this->session->userdata('role') == 2) : ?>
+          <!-- MENU ADMIN -->
             <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
@@ -74,6 +75,7 @@
             </a>
           </li>
           <?php elseif($this->session->userdata('role') == 1) : ?>
+          <!-- MENU PETUGAS -->
             <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="fas fa-check nav-icon"></i>
@@ -89,8 +91,9 @@
             </a>
           </li>
           <?php else : ?>
+          <!-- MENU SISWA -->
             <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?= base_url('siswa/tagihan'); ?>" class="nav-link">
                 <i class="fas fa-money-bill nav-icon"></i>
                 <p>Tagihan</p>
             </a>

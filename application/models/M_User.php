@@ -104,7 +104,6 @@ class M_User extends CI_Model {
            'id_kelas' => $post['id_kelas'],
            'alamat' => $post['alamat'],
            'no_telp' => $post['telp'],
-           'id_spp' => 1,
            'role' => 0           
        ];
 
@@ -180,6 +179,12 @@ class M_User extends CI_Model {
         return $this->db->get($this->_tableSpp)->row_array();
    }
 
+   public function getPembayaran($id)
+   {
+       $this->db->where('id_spp', $id);
+       return $this->db->get('pembayaran')->row_array();
+   }
+
    public function tambahSpp()
    {
        $post = $this->input->post();
@@ -204,6 +209,43 @@ class M_User extends CI_Model {
        $this->db->where('id_spp', $id);
        return $this->db->update($this->_tableSpp, $spp);
 
+   }
+
+   public function uploadGambar()
+   {
+    $config['upload_path']          = './assets/img/';
+    $config['allowed_types']        = 'gif|jpg|png';
+    $config['file_name']            = uniqid();
+    $config['overwrite']			= true;
+    // $config['max_width']            = 1024;
+    // $config['max_height']           = 768;
+
+    $this->load->library('upload', $config);
+
+    if ($this->upload->do_upload('gambar')) {
+        return $this->upload->data("file_name");
+    } else {
+        echo $this->upload->display_errors();
+    }
+
+   }
+
+   public function tambahPembayaran()
+   {
+       $post = $this->input->post();
+
+       $data = [
+           'nisn' => $this->session->userdata('username'),
+           'tgl_bayar' => $post['tgl_bayar'],
+           'bulan_dibayar' => $post['bulan_dibayar'],
+           'tahun_dibayar' => $post['tahun_dibayar'],
+           'id_spp' => $post['id_spp'],
+           'jumlah_bayar' => $post['nominal'],
+           'bukti_pembayaran' => $this->uploadGambar(),
+           'status' => "Tunggu Konfirmasi"
+       ];
+
+       return $this->db->insert('pembayaran', $data);
    }
 
 }

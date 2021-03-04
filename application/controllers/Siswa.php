@@ -25,4 +25,47 @@ class Siswa extends CI_Controller {
 		$this->load->view('siswa/dashboard');
 		$this->load->view('layout/footer');
 	}
+
+	public function tagihan()
+	{
+		$data['spp'] = $this->M_User->dataSpp();
+		$this->load->view('layout/navbar');
+		$this->load->view('layout/sidebar');
+		$this->load->view('siswa/tagihan', $data);
+		$this->load->view('layout/footer');
+	}
+
+	public function rincian($id)
+	{
+		$data['rincian_spp'] = $this->M_User->getSppById($id);
+		$data['pembayaran'] = $this->M_User->getPembayaran($id);
+		$this->load->view('layout/navbar');
+		$this->load->view('layout/sidebar');
+		$this->load->view('siswa/rincian_spp', $data);
+		$this->load->view('layout/footer');
+
+	}
+
+	public function bayar($id)
+	{
+
+		$validation = $this->form_validation;
+
+		$validation->set_rules('nominal', 'Nominal', 'required');
+
+		$validation->set_message('required', '<div class="small text-danger"><i class="fa fa-exclamation-circle"></i> {field} tidak boleh kosong!</div>');
+
+		if($validation->run() == TRUE)
+		{
+			$this->M_User->tambahPembayaran();
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Terima kasih sudah melakukan pembayaran, Mohon tunggu untuk konfirmasi dari Petugas!</div>');
+			redirect('siswa/tagihan');
+		} else {
+		$data['bayar_spp'] = $this->M_User->getSppById($id);
+		$this->load->view('layout/navbar');
+		$this->load->view('layout/sidebar');
+		$this->load->view('siswa/konfirmasi_pembayaran', $data);
+		$this->load->view('layout/footer');
+		}
+	}
 }
