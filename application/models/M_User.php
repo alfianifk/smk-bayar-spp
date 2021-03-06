@@ -185,6 +185,12 @@ class M_User extends CI_Model {
        return $this->db->get('pembayaran')->row_array();
    }
 
+   public function dataPembayaranTunggu()
+   {
+       $this->db->where('status', 'Tunggu Konfirmasi');
+       return $this->db->get('pembayaran')->result_array();
+   }
+
    public function tambahSpp()
    {
        $post = $this->input->post();
@@ -236,6 +242,7 @@ class M_User extends CI_Model {
 
        $data = [
            'nisn' => $this->session->userdata('username'),
+           'nama' => $this->session->userdata('nama'),
            'tgl_bayar' => $post['tgl_bayar'],
            'bulan_dibayar' => $post['bulan_dibayar'],
            'tahun_dibayar' => $post['tahun_dibayar'],

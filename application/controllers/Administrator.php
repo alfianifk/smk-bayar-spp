@@ -24,6 +24,7 @@ class Administrator extends CI_Controller {
 		$data['siswa'] = $this->M_User->dataSiswa();
 		$data['petugas'] = $this->M_User->dataPetugas();
 		$data['spp'] = $this->M_User->dataSpp();
+		$data['konfirmasi'] = $this->M_User->dataPembayaranTunggu();
 		$this->load->view('layout/navbar');
 		$this->load->view('layout/sidebar');
 		$this->load->view('admin/dashboard', $data);
@@ -236,4 +237,5 @@ class Administrator extends CI_Controller {
 		$this->load->view('layout/footer');
 		}
 	}
+
 }

@@ -75,10 +75,11 @@
                   </thead>
                   <tbody>
                     <?php $no = 1;?>
+                    <?php foreach($konfirmasi as $k) : ?>
                   <tr>
                     <td><?= $no++; ?></td>
-                    <td>634727468273</td>
-                    <td>AlfianiFk</td>
+                    <td><?= $k['nisn']; ?></td>
+                    <td><?= $k['nama']; ?></td>
                     <td>Januari 2021</td>
                     <td>5 Januari 2021</td>
                     <td>Belum Dikonfirmasi</td>
@@ -86,6 +87,7 @@
                       <a onclick="return confirm('Apakah anda yakin ingin mengkonfirmasi pembayaran ini?');" href="#" class="btn btn-xs btn-success" role="button" title="Hapus Data">Konfirmasi</a>
                     </td>
                   </tr>
+                  <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>
