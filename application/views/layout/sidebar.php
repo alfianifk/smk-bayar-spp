@@ -103,7 +103,7 @@
             </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="<?= base_url('siswa/riwayatPembayaran') ?>" class="nav-link">
                   <i class="fas fa-history nav-icon"></i>
                   <p>History Pembayaran</p>
               </a>

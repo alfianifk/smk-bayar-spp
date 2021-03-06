@@ -20,9 +20,11 @@ class Siswa extends CI_Controller {
 
 	public function index()
 	{
+		$data['spp'] = $this->M_User->dataSpp();
+		$data['pembayaran'] = $this->M_User->pembayaranByNis();
 		$this->load->view('layout/navbar');
 		$this->load->view('layout/sidebar');
-		$this->load->view('siswa/dashboard');
+		$this->load->view('siswa/dashboard', $data);
 		$this->load->view('layout/footer');
 	}
 
@@ -67,5 +69,14 @@ class Siswa extends CI_Controller {
 		$this->load->view('siswa/konfirmasi_pembayaran', $data);
 		$this->load->view('layout/footer');
 		}
+	}
+
+	public function	riwayatPembayaran()
+	{
+		$data['pembayaran'] = $this->M_User->pembayaranByNis();
+		$this->load->view('layout/navbar');
+		$this->load->view('layout/sidebar', $data);
+		$this->load->view('siswa/riwayat_pembayaran', $data);
+		$this->load->view('layout/footer');
 	}
 }

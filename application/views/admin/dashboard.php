@@ -37,7 +37,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3><?= count($spp); ?></h3>
+                <h3><?= count($konfirmasi); ?></h3>
 
                 <p>Konfirmasi Pembayaran</p>
               </div>

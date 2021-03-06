@@ -4,7 +4,7 @@
             <div class="col-md-8">
                 <div class="card mt-3">
                     <div class="card-header">
-                        <div class="card-title">Rincian Pembayaran bulan <b><?= $rincian_spp['bulan']; ?></b> </div>
+                        <div class="card-title">Rincian Pembayaran bulan <b><?= $pembayaran['bulan_dibayar']; ?></b> </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -25,13 +25,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="bulan">Bulan/Tahun</label>
-                                    <input type="text" class="form-control" readonly value="<?= $rincian_spp['bulan']; ?>, <?= $rincian_spp['tahun']; ?>">
+                                    <input type="text" class="form-control" readonly value="<?= $pembayaran['bulan_dibayar']; ?>, <?= $pembayaran['tahun_dibayar']; ?>">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="nis">Nominal</label>
-                                    <input type="text" class="form-control" readonly value="<?= $rincian_spp['nominal']?> ">
+                                    <input type="text" class="form-control" readonly value="<?= $pembayaran['jumlah_bayar']?> ">
                                 </div>
                             </div>
                             <?php if($pembayaran == NULL) : ?>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="<?= base_url('siswa/bayar/'); ?><?= $rincian_spp['id_spp']; ?>" class=" <?php ($pembayaran == NULL) ? print ' ' : print 'disabled'; ?> btn btn-primary">Bayar Sekarang</a>
+                        <a href="<?= base_url('siswa/bayar/'); ?><?= $pembayaran['id_spp']; ?>" class=" <?php ($pembayaran['nisn'] == $this->session->userdata('username')) ? print 'disabled' : print ' '; ?> btn btn-primary">Bayar Sekarang</a>
                     </div>
                 </div>
             </div>

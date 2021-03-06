@@ -176,6 +176,7 @@ class M_User extends CI_Model {
    public function getSppById($id)
    {
         $this->db->where('id_spp', $id);
+        // $this->db->where('nis', $this->session->userdata('username'));
         return $this->db->get($this->_tableSpp)->row_array();
    }
 
@@ -263,6 +264,12 @@ class M_User extends CI_Model {
 
    public function pembayaran()
    {
+       return $this->db->get('pembayaran')->result_array();
+   }
+
+   public function pembayaranByNis()
+   {
+       $this->db->where('nisn', $this->session->userdata('username'));
        return $this->db->get('pembayaran')->result_array();
    }
 

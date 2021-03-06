@@ -24,7 +24,7 @@
                             <td><?= $a['tahun']; ?></td>
                             <td><?= $a['nominal']; ?></td>
                             <td>
-                                <a href="<?= base_url('siswa/rincian/'); ?><?= $a['id_spp']; ?>" class="badge badge-primary">Lihat Rincian</a>
+                                <a href="<?= base_url('siswa/bayar/'); ?><?= $a['id_spp']; ?>" class="badge badge-primary">Bayar Sekarang</a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
