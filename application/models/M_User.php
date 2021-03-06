@@ -185,6 +185,12 @@ class M_User extends CI_Model {
        return $this->db->get('pembayaran')->row_array();
    }
 
+   public function getPembayaranById($id)
+   {
+       $this->db->where('id_pembayaran', $id);
+       return $this->db->get('pembayaran')->row_array();
+   } 
+
    public function dataPembayaranTunggu()
    {
        $this->db->where('status', 'Tunggu Konfirmasi');
@@ -253,6 +259,19 @@ class M_User extends CI_Model {
        ];
 
        return $this->db->insert('pembayaran', $data);
+   }
+
+   public function pembayaran()
+   {
+       return $this->db->get('pembayaran')->result_array();
+   }
+
+   public function accPembayaran($id)
+   {
+       $status = "Dikonfirmasi";
+       $query = "UPDATE `pembayaran` SET `status` = '$status' WHERE `id_pembayaran` = '$id'";
+       return $this->db->query($query);
+
    }
 
 }

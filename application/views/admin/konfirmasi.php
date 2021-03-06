@@ -1,59 +1,6 @@
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-4 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3><?= count($siswa); ?></h3>
-
-                <p>Data Siswa</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person"></i>
-              </div>
-              <a href="<?= base_url('administrator/siswa'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-4 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3><?= count($petugas); ?></h3>
-
-                <p>Data Petugas</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-4 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3><?= count($spp); ?></h3>
-
-                <p>Konfirmasi Pembayaran</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-        </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-
-      <div class="container-fluid">
-        <div class="row">
+<section class="content">
+    <div class="container-fluid">
+    <div class="row">
             <section class="col-lg-12 connectedSortable">
             <?= $this->session->flashdata('message'); ?>
                 <div class="card">
@@ -100,7 +47,5 @@
                 </div>
             </section>
         </div>
-      </div>
-    </section>
-    <!-- /.content -->
-  
+    </div>
+</section>

@@ -26,16 +26,17 @@ class Administrator extends CI_Controller {
 		$data['spp'] = $this->M_User->dataSpp();
 		$data['konfirmasi'] = $this->M_User->dataPembayaranTunggu();
 		$this->load->view('layout/navbar');
-		$this->load->view('layout/sidebar');
+		$this->load->view('layout/sidebar', $data);
 		$this->load->view('admin/dashboard', $data);
 		$this->load->view('layout/footer');
 	}
 
 	public function siswa()
 	{
+		$data['konfirmasi'] = $this->M_User->dataPembayaranTunggu();
 		$data['siswa'] = $this->M_User->dataSiswa();
 		$this->load->view('layout/navbar');
-		$this->load->view('layout/sidebar');
+		$this->load->view('layout/sidebar', $data);
 		$this->load->view('admin/siswa', $data);
 		$this->load->view('layout/footer');
 	}
@@ -58,9 +59,10 @@ class Administrator extends CI_Controller {
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Terima kasih! Data sudah tersimpan</div>');
 			redirect('administrator/siswa');
 		} else {
+		$data['konfirmasi'] = $this->M_User->dataPembayaranTunggu();
 		$data['siswa'] = $this->M_User->dataSiswa();
 		$this->load->view('layout/navbar');
-		$this->load->view('layout/sidebar');
+		$this->load->view('layout/sidebar', $data);
 		$this->load->view('admin/tambah_siswa', $data);
 		$this->load->view('layout/footer');
 		}
@@ -85,9 +87,10 @@ class Administrator extends CI_Controller {
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Terima kasih! Data sudah berhasil diubah</div>');
 			redirect('administrator/siswa');
 		} else {
+		$data['konfirmasi'] = $this->M_User->dataPembayaranTunggu();
 		$data['siswa'] = $this->M_User->getSiswaByNisn($id);
 		$this->load->view('layout/navbar');
-		$this->load->view('layout/sidebar');
+		$this->load->view('layout/sidebar', $data);
 		$this->load->view('admin/edit_siswa', $data);
 		$this->load->view('layout/footer');
 		}
@@ -106,9 +109,10 @@ class Administrator extends CI_Controller {
 
 	public function petugas()
 	{
+		$data['konfirmasi'] = $this->M_User->dataPembayaranTunggu();
 		$data['petugas'] = $this->M_User->dataPetugas();
 		$this->load->view('layout/navbar');
-		$this->load->view('layout/sidebar');
+		$this->load->view('layout/sidebar', $data);
 		$this->load->view('admin/petugas', $data);
 		$this->load->view('layout/footer');
 	}
@@ -130,9 +134,10 @@ class Administrator extends CI_Controller {
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Terima kasih! Data sudah tersimpan</div>');
 			redirect('administrator/petugas');
 		} else {
+		$data['konfirmasi'] = $this->M_User->dataPembayaranTunggu();
 		$data['petugas'] = $this->M_User->dataPetugas();
 		$this->load->view('layout/navbar');
-		$this->load->view('layout/sidebar');
+		$this->load->view('layout/sidebar', $data);
 		$this->load->view('admin/tambah_petugas', $data);
 		$this->load->view('layout/footer');
 		}
@@ -155,9 +160,10 @@ class Administrator extends CI_Controller {
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Terima kasih! Data sudah berhasil diubah</div>');
 			redirect('administrator/petugas');
 		} else {
+		$data['konfirmasi'] = $this->M_User->dataPembayaranTunggu();
 		$data['petugas'] = $this->M_User->getPetugasById($id);
 		$this->load->view('layout/navbar');
-		$this->load->view('layout/sidebar');
+		$this->load->view('layout/sidebar', $data);
 		$this->load->view('admin/edit_petugas', $data);
 		$this->load->view('layout/footer');
 		}
@@ -176,9 +182,10 @@ class Administrator extends CI_Controller {
 
 	public function spp()
 	{
+		$data['konfirmasi'] = $this->M_User->dataPembayaranTunggu();
 		$data['spp'] = $this->M_User->dataSpp();
 		$this->load->view('layout/navbar');
-		$this->load->view('layout/sidebar');
+		$this->load->view('layout/sidebar', $data);
 		$this->load->view('admin/spp', $data);
 		$this->load->view('layout/footer');
 	}
@@ -198,8 +205,9 @@ class Administrator extends CI_Controller {
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Terima kasih! Data sudah berhasil diubah</div>');
 			redirect('administrator/spp');
 		} else {
+		$data['konfirmasi'] = $this->M_User->dataPembayaranTunggu();
 		$this->load->view('layout/navbar');
-		$this->load->view('layout/sidebar');
+		$this->load->view('layout/sidebar', $data);
 		$this->load->view('admin/tambah_spp');
 		$this->load->view('layout/footer');
 		}
@@ -230,12 +238,53 @@ class Administrator extends CI_Controller {
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Terima kasih! Data sudah berhasil diubah</div>');
 			redirect('administrator/spp');
 		} else {
+		$data['konfirmasi'] = $this->M_User->dataPembayaranTunggu();
 		$data['spp'] = $this->M_User->getSppById($id);
 		$this->load->view('layout/navbar');
-		$this->load->view('layout/sidebar');
+		$this->load->view('layout/sidebar', $data);
 		$this->load->view('admin/edit_spp', $data);
 		$this->load->view('layout/footer');
 		}
 	}
+
+	public function accPembayaran($id)
+	{
+		$this->M_User->accPembayaran($id);
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Terima kasih! Data sudah berhasil dikonfirmasi!</div>');
+		redirect('administrator');
+	}
+
+	public function deletePembayaran($id)
+	{
+		// $this->db->where('id_pembayaran', $id);
+		// $this->db->delete('pembayaran');
+
+		$status = "Gagal Dikonfirmasi";
+		$query = "UPDATE `pembayaran` SET `status` = '$status' WHERE `id_pembayaran` = '$id'";
+		$this->db->query($query);
+
+		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data yang anda pilih gagal di Konfirmasi!</div>');
+		redirect('administrator');
+	}
+
+
+	public function konfirmasi()
+	{
+		$data['konfirmasi'] = $this->M_User->dataPembayaranTunggu();
+		$this->load->view('layout/navbar');
+		$this->load->view('layout/sidebar', $data);
+		$this->load->view('admin/konfirmasi', $data);
+		$this->load->view('layout/footer');
+	}
+
+	public function riwayatPembayaran()
+	{
+		$data['konfirmasi'] = $this->M_User->pembayaran();
+		$this->load->view('layout/navbar');
+		$this->load->view('layout/sidebar', $data);
+		$this->load->view('admin/riwayat_pembayaran', $data);
+		$this->load->view('layout/footer');
+	}
+
 
 }
