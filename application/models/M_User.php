@@ -198,6 +198,13 @@ class M_User extends CI_Model {
        return $this->db->get('pembayaran')->result_array();
    }
 
+   public function dataPembayaranAcc()
+   {
+       $this->db->where('status', 'Dikonfirmasi');
+       return $this->db->get('pembayaran')->result_array();
+   }
+
+
    public function tambahSpp()
    {
        $post = $this->input->post();

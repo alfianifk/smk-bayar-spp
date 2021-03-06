@@ -81,15 +81,19 @@
           <?php elseif($this->session->userdata('role') == 1) : ?>
           <!-- MENU PETUGAS -->
             <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?= base_url('petugas/konfirmasi'); ?>" class="nav-link">
                 <i class="fas fa-check nav-icon"></i>
                 <p>Konfirmasi
-                <span class="right badge badge-danger">1</span>
+                <?php if($konfirmasi == !NULL) : ?>
+                <span class="right badge badge-danger"><?= count($konfirmasi); ?></span>
+                <?php else: ?>
+                <span class="right badge badge-danger"> 0 </span>
+                <?php endif; ?>
                 </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?= base_url('petugas/riwayatPembayaran') ?>" class="nav-link">
                 <i class="fas fa-print nav-icon"></i>
                 <p>Laporan</p>
             </a>
