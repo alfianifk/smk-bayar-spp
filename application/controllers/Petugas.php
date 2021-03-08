@@ -26,7 +26,7 @@ class Petugas extends CI_Controller {
 		$data['pembayaran'] = $this->M_User->dataPembayaranAcc();
 		$data['konfirmasi'] = $this->M_User->dataPembayaranTunggu();
 		$this->load->view('layout/navbar');
-		$this->load->view('layout/sidebar');
+		$this->load->view('layout/sidebar', $data);
 		$this->load->view('petugas/dashboard', $data);
 		$this->load->view('layout/footer');
 	}
@@ -62,7 +62,8 @@ class Petugas extends CI_Controller {
 
 	public function riwayatPembayaran()
 	{
-		$data['konfirmasi'] = $this->M_User->pembayaran();
+		$data['pembayaran'] = $this->M_User->pembayaran();
+		$data['konfirmasi'] = $this->M_User->dataPembayaranTunggu();
 		$this->load->view('layout/navbar');
 		$this->load->view('layout/sidebar', $data);
 		$this->load->view('petugas/riwayat_pembayaran', $data);

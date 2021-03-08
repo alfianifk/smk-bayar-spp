@@ -23,7 +23,7 @@
                   </thead>
                   <tbody>
                     <?php $no = 1;?>
-                    <?php foreach($konfirmasi as $k) : ?>
+                    <?php foreach($pembayaran as $k) : ?>
                   <tr>
                     <td><?= $no++; ?></td>
                     <td><?= $k['nisn']; ?></td>
