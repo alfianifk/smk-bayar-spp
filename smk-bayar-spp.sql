@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Mar 2021 pada 14.58
+-- Waktu pembuatan: 08 Mar 2021 pada 09.59
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.6
 
@@ -56,15 +56,24 @@ INSERT INTO `kelas` (`id_kelas`, `kelas`, `kompetensi_keahlian`) VALUES
 
 CREATE TABLE `pembayaran` (
   `id_pembayaran` int(11) NOT NULL,
-  `id_petugas` int(11) NOT NULL,
   `nisn` varchar(10) NOT NULL,
+  `nama` varchar(200) NOT NULL,
   `tgl_bayar` varchar(200) NOT NULL,
   `bulan_dibayar` varchar(50) NOT NULL,
   `tahun_dibayar` varchar(5) NOT NULL,
   `id_spp` int(11) NOT NULL,
   `jumlah_bayar` int(11) NOT NULL,
-  `bukti_pembayaran` varchar(255) NOT NULL
+  `bukti_pembayaran` varchar(255) NOT NULL,
+  `status` varchar(50) NOT NULL DEFAULT 'Tunggu Konfirmasi'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id_pembayaran`, `nisn`, `nama`, `tgl_bayar`, `bulan_dibayar`, `tahun_dibayar`, `id_spp`, `jumlah_bayar`, `bukti_pembayaran`, `status`) VALUES
+(2, '171810023', 'Alfiani Fitria Kusnadi', '04 Mar 2021', 'Januari', '2021', 1, 50000, '60410ce2af5a6.png', 'Dikonfirmasi'),
+(3, '171810024', 'Alfan Fabian', '06 Mar 2021', 'Januari', '2021', 1, 50000, '604344026da56.png', 'Dikonfirmasi');
 
 -- --------------------------------------------------------
 
@@ -102,7 +111,6 @@ CREATE TABLE `siswa` (
   `id_kelas` int(11) NOT NULL,
   `alamat` text NOT NULL,
   `no_telp` varchar(15) NOT NULL,
-  `id_spp` int(11) NOT NULL,
   `role` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -110,8 +118,9 @@ CREATE TABLE `siswa` (
 -- Dumping data untuk tabel `siswa`
 --
 
-INSERT INTO `siswa` (`nisn`, `nis`, `nama`, `id_kelas`, `alamat`, `no_telp`, `id_spp`, `role`) VALUES
-('0015995390', '171810023', 'Alfiani Fitria Kusnadi', 2, 'Kp. Desakolot Ds. Singkir Kec. Cikalong', '082321543292', 1, 0);
+INSERT INTO `siswa` (`nisn`, `nis`, `nama`, `id_kelas`, `alamat`, `no_telp`, `role`) VALUES
+('0015995390', '171810023', 'Alfiani Fitria Kusnadi', 2, 'Kp. Desakolot Ds. Singkir Kec. Cikalong', '082321543292', 0),
+('0015995391', '171810024', 'Alfan Fabian', 9, 'Cikalong', '085750538162', 0);
 
 -- --------------------------------------------------------
 
@@ -131,27 +140,8 @@ CREATE TABLE `spp` (
 --
 
 INSERT INTO `spp` (`id_spp`, `tahun`, `bulan`, `nominal`) VALUES
-(1, 2021, 'Januari', 50000);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `tagihan`
---
-
-CREATE TABLE `tagihan` (
-  `id_tagihan` int(11) NOT NULL,
-  `id_spp` int(11) NOT NULL,
-  `nisn` int(11) NOT NULL,
-  `status` char(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `tagihan`
---
-
-INSERT INTO `tagihan` (`id_tagihan`, `id_spp`, `nisn`, `status`) VALUES
-(1, 1, 15995390, 'belum dibayar');
+(1, 2021, 'Januari', 50000),
+(4, 2021, 'Februari', 50000);
 
 --
 -- Indexes for dumped tables
@@ -188,12 +178,6 @@ ALTER TABLE `spp`
   ADD PRIMARY KEY (`id_spp`);
 
 --
--- Indeks untuk tabel `tagihan`
---
-ALTER TABLE `tagihan`
-  ADD PRIMARY KEY (`id_tagihan`);
-
---
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -207,7 +191,7 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `petugas`
@@ -219,13 +203,7 @@ ALTER TABLE `petugas`
 -- AUTO_INCREMENT untuk tabel `spp`
 --
 ALTER TABLE `spp`
-  MODIFY `id_spp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT untuk tabel `tagihan`
---
-ALTER TABLE `tagihan`
-  MODIFY `id_tagihan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_spp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
