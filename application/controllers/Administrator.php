@@ -279,7 +279,8 @@ class Administrator extends CI_Controller {
 
 	public function riwayatPembayaran()
 	{
-		$data['konfirmasi'] = $this->M_User->pembayaran();
+		$data['pembayaran'] = $this->M_User->pembayaran();
+		$data['konfirmasi'] = $this->M_User->dataPembayaranTunggu();
 		$this->load->view('layout/navbar');
 		$this->load->view('layout/sidebar', $data);
 		$this->load->view('admin/riwayat_pembayaran', $data);
